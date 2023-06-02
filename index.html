@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=no;user-scalable=0;"><meta http-equiv="X-UA-Compatible" content="ie=edge"/><meta name="robots" content="index,follow"/><meta name="revisit-after" content="1days"/><link rel="stylesheet" href="sang.css"></head><style></style><body><div id="wrapper" class="scaleDesktop scaleMobile"><div class="content"><div class="box"><label for="day">Ngày:</label> <input type="number" id="day" placeholder=""> <label for="day">Giờ:</label> <input type="number" id="hour" placeholder=""> <label for="day">Phút:</label> <input type="number" id="minute" placeholder=""> <button class="btn" onclick="handle()">Gửi</button><p class="result"></p></div></div></div><script src="sang.js"></script></body><script>function handle() {
+    let day = document.querySelector("input#day").value; 
+    let hour = document.querySelector("input#hour").value; 
+    let minute = document.querySelector("input#minute").value; 
+    let result =  document.querySelector(".result");
+    if (day.length < 1 && hour.length < 1 && minute.length < 1) return;
+    let run = hour * 60;
+    run = run + Number(minute);
+    run = run * Number(day);
+    h = Math.floor(run/60);
+    m = run % 60;
+    result.innerHTML = `Kết quả ${h} giờ ${m} phút `
+  };</script></html>
