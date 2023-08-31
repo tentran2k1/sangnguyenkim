@@ -1,13 +1,31 @@
-<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=no;user-scalable=0;"><meta http-equiv="X-UA-Compatible" content="ie=edge"/><meta name="robots" content="index,follow"/><meta name="revisit-after" content="1days"/><link rel="stylesheet" href="sang.css"></head><style></style><body><div id="wrapper" class="scaleDesktop scaleMobile"><div class="content"><div class="box"><label for="day">Ngày:</label> <input type="number" id="day" placeholder=""> <label for="day">Giờ:</label> <input type="number" id="hour" placeholder=""> <label for="day">Phút:</label> <input type="number" id="minute" placeholder=""> <button class="btn" onclick="handle()">Gửi</button><p class="result"></p></div></div></div><script src="sang.js"></script></body><script>function handle() {
+<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=no;user-scalable=0;"><meta http-equiv="X-UA-Compatible" content="ie=edge"/><meta name="robots" content="index,follow"/><meta name="revisit-after" content="1days"/><link rel="stylesheet" href="sang.css"></head><style></style><body><div id="wrapper" class="scaleDesktop scaleMobile"><div class="content"><div class="box" style="height:56%"><label for="day">Ngày:</label> <input type="number" id="day" placeholder="" value="1"> <label for="day">Giờ:</label> <input type="number" id="hour" placeholder="" value="0">> <label for="day">Phút:</label> <input type="number" id="minute" placeholder="" value="0">> <button class="btn" onclick="add()" style="background-color:#ff0;color:#000">Cộng thêm</button> <button class="btn" onclick="handle()">Gửi</button><p class="result"></p></div><div class="box box2" style="height:37%"><label for="day">Ngày:</label> <input type="number" id="day2" placeholder="" value="1">> <label for="day">Giờ:</label> <input type="number" id="hour2" placeholder="" value="0">> <label for="day">Phút:</label> <input type="number" id="minute2" placeholder="" value="0">></div></div></div><script src="sang.js"></script></body><script>function handle() {
     let day = document.querySelector("input#day").value; 
     let hour = document.querySelector("input#hour").value; 
-    let minute = document.querySelector("input#minute").value; 
+    let minute = document.querySelector("input#minute").value;  
     let result =  document.querySelector(".result");
+    let h = 0;
+    let m = 0;
+    let h2 = 0;
+    let m2 = 0;
     if (day.length < 1 && hour.length < 1 && minute.length < 1) return;
+    if (document.querySelector(".box2.active")) {
+      let day2 = document.querySelector("input#day2").value; 
+      let hour2 = document.querySelector("input#hour2").value; 
+      let minute2 = document.querySelector("input#minute2").value;
+      if (day2.length < 1 && hour2.length < 1 && minute2.length < 1) return;
+        let run2 = hour2 * 60;
+        run2 = run2 + Number(minute2);
+        run2 = run2 * Number(day2);
+        h2 = Math.floor(run2/60);
+        m2 = run2 % 60;
+    };
     let run = hour * 60;
     run = run + Number(minute);
     run = run * Number(day);
     h = Math.floor(run/60);
     m = run % 60;
-    result.innerHTML = `Kết quả ${h} giờ ${m} phút `
-  };</script></html>
+    result.innerHTML = `Kết quả ${h + h2} giờ ${m + m2} phút `
+  };
+  function add() {
+    document.querySelector(".box2").classList.toggle('active');
+  }</script></html>
